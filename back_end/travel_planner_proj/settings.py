@@ -43,7 +43,14 @@ INSTALLED_APPS = [
     'day_detail_app',
     'time_detail_app',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +93,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL = 'user_app.User'
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
