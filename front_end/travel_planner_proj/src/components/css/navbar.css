@@ -1,0 +1,11 @@
+
+.nav-Link {
+    color:#00000080 ;
+    text-decoration: none;
+    padding: 8px;
+}
+
+#basic-navbar-nav{
+    display: flex;
+    justify-content: space-between;    
+}
