@@ -8,6 +8,8 @@ import OrderDetail from "./components/OrderDetail";
 import RecommendedList from "./components/RecommendedList";
 import TripBoards from "./components/TripBoards";
 import Error404Page from "./components/Error404Page";
+import SignIn from "./components/SignIn";
+import ChooseDate from "./components/ChooseDate";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +35,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "OrderDetail",
-                element: <OrderDetail />
+                element: <OrderDetail />,
+            },
+            {
+                path: "SignIn",
+                element: <SignIn />,
+            },
+            {
+                path: "ChooseDate",
+                element: <ChooseDate />,
             },
         ],
     },

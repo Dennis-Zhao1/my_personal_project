@@ -1,0 +1,34 @@
+/* Style for the trip info container */
+.trip-info {
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Style for the accordion item container */
+  .accordion-item {
+    margin: 10px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+  }
+  
+  /* Style for the accordion header */
+  .accordion-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  /* Style for the accordion body */
+  .accordion-body {
+    padding: 10px;
+  }
+  
+  /* Style for the activity paragraph */
+  .activity {
+    background-color: #f8f8f8;
+    padding: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+  }
