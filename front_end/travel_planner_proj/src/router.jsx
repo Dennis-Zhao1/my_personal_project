@@ -10,6 +10,7 @@ import TripBoards from "./components/TripBoards";
 import Error404Page from "./components/Error404Page";
 import SignIn from "./components/SignIn";
 import ChooseDate from "./components/ChooseDate";
+import RegisterPage from "./components/RegisterPage";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: "ChooseDate",
                 element: <ChooseDate />,
+            },
+            {
+                path: "SignUp",
+                element: <RegisterPage />,
             },
         ],
     },
