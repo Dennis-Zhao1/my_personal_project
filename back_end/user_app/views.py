@@ -27,6 +27,7 @@ class Log_in(APIView):
     def post(self, request):
         email = request.data.get("email")
         password = request.data.get("password")
+        print(email,password)
         user = authenticate(username=email, password=password)
         if user:
             token, created = Token.objects.get_or_create(user=user)
