@@ -6,7 +6,7 @@ from django.utils import timezone
 class Trips(models.Model):
     name = models.TextField(default="Unknown")
     start_day = models.DateField(default=timezone.now().date() + timezone.timedelta(days=1))
-    end_day = models.DateField(null=True)
+    end_day = models.DateField(null=True,default=start_day)
     plans = models.ForeignKey(Plans,on_delete=models.CASCADE)
     
     def __str__(self):

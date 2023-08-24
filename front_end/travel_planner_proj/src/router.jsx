@@ -11,6 +11,7 @@ import Error404Page from "./components/Error404Page";
 import SignIn from "./components/SignIn";
 import ChooseDate from "./components/ChooseDate";
 import RegisterPage from "./components/RegisterPage";
+import TripBoardDetail from "./components/TripBoardDetail";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: "SignUp",
                 element: <RegisterPage />,
+            },
+            {
+                path: "TripBoardDeatil",
+                element: <TripBoardDetail />,
             },
         ],
     },
