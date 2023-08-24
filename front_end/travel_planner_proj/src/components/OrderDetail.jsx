@@ -10,17 +10,32 @@ import { api } from "./utilities/utilities";
 
 
 export default function OrderDetail(){
-    const {startDate,endDate,selectedCountry,selectcity,resultPlan,setResultPlan} = useContext(TravelContext);
+    const {startDate,endDate,selectedCountry,selectcity,resultPlan,setResultPlan,user} = useContext(TravelContext);
     const [filterCountry, setFilterCountry] = useState(''); 
     const days = Math.floor((endDate - startDate + 1)/(24 * 60 * 60 * 1000)); 
     const [isLoading, setIsLoading] = useState(true);
     const [newPlanName, setNewPlanName] = useState("");
-
+   
     // fetch the database to get myPlans
     const [myPlans,setMyPlans] = useState([])
 
     // drop down choosed plan called selectedPlan
     const [selectedPlan,setSelectedPlan] = useState(null)
+
+    function convert12HourTo24Hour(time12h) {
+        const [time, period] = time12h.split(' ');
+        const [hours, minutes] = time.split(':');
+    
+        let hours24 = parseInt(hours);
+    
+        if (period === 'PM' && hours24 < 12) {
+            hours24 += 12;
+        } else if (period === 'AM' && hours24 === 12) {
+            hours24 = 0;
+        }
+    
+        return `${hours24}:${minutes}`;
+    }
     
     function find_country_short(){
         if(!selectedCountry){
@@ -61,7 +76,7 @@ export default function OrderDetail(){
                 const response = await api.post(`plans/${selectedPlan.name}/trips/`,{
                     name:selectcity,
                     start_day:formattedStartDate,
-                    end_day:formattedStartDate,
+                    end_day:formattedEndDate,
                     plans:selectedPlan
                 })
             }
@@ -85,10 +100,10 @@ export default function OrderDetail(){
                         
                         const time_details = trip.activities;                        
                         time_details.map( (time_detail) =>{
-                            let time = time_detail.time;
+                            let time = convert12HourTo24Hour(time_detail.time);
                             let description = time_detail.description;
                             try{
-                                const response = api.post(`plans/${selectedPlan.name}/trips/${selectcity}/day_detail/${day}/`,{
+                                const response = api.post(`plans/${selectedPlan.name}/trips/${selectcity}/day_detail/${day}/times/`,{
                                     day:day,
                                     time:time,
                                     description:description                                
@@ -100,7 +115,7 @@ export default function OrderDetail(){
                         })
                     })
         }
-        alert(`Your trips "${selectcity}" for ${days} has been added to plan: "${selectedPlan}"`)
+        alert(`Your trips "${selectcity}" for ${days} has been added to plan: "${selectedPlan.name}"`)
     }
 
     useEffect( ()=>{
@@ -133,10 +148,7 @@ export default function OrderDetail(){
           try {
             const response = await axios.request(options);
             console.log("response.data.plan",response.data.plan);
-            // const plan_copy = [...resultPlan];
-            // response.data.plan.map( (a_plan) => {
-            //     plan_copy.push(a_plan);                
-            // })
+
             setResultPlan(response.data.plan);
           } 
           catch (error) {
@@ -176,11 +188,17 @@ export default function OrderDetail(){
 
     return (
         <>
-        <div className="trip-info">
+        {user? 
+        (<div className="trip-info">
             <h2>Your trip to {selectcity} {selectedCountry} for {days} days: </h2>
-        </div>
+        </div>) :
+        (<div className="trip-info">
+            <h2>Please log in to see trip details</h2>
+        </div>)}
 
-        <Container className="choose-plan-container">
+        { user && (
+            <>
+            <Container className="choose-plan-container">
         <label id="plan-label" className="choose-plan">Add this trip to : </label>
         <Dropdown >
             <Dropdown.Toggle className="choose-plan" variant="success" id="dropdown-basic">
@@ -207,7 +225,7 @@ export default function OrderDetail(){
         <button className="choose-plan" onClick={addToMyTrips} >Add</button>
      
         </Container>
-        {/* here put the drop down, plan1, plan2, plan3 */}
+    
         <Accordion defaultActiveKey="0">
             {resultPlan.map((a_plan, outerIndex) => (
                 <div className="accordion-item" key={outerIndex}>
@@ -225,5 +243,6 @@ export default function OrderDetail(){
             ))}
         </Accordion>
         </>
-    )
+    )}
+     </>)
 }

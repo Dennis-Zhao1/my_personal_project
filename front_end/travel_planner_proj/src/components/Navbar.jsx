@@ -32,7 +32,7 @@ export default function Narbar(){
                 <Nav className="me-auto">
                     <Link className="nav-Link" to="/">Home</Link> 
                     <Link className="nav-Link" to="TripBoards">Trip Boards</Link> 
-                    <Link className="nav-Link" to="TripBoards">My Trips</Link>
+                    {/* <Link className="nav-Link" to="TripBoards">My Trips</Link> */}
                     
                     <NavDropdown title="More" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">About</NavDropdown.Item>

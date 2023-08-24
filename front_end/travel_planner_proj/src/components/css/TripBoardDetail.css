@@ -1,0 +1,49 @@
+.plan-details {
+    padding: 20px;
+  }
+  
+  .plan-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .custom-accordion {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .accordion-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .accordion-header {
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .day-details {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .day-number {
+    font-weight: bold;
+  }
+  
+  .time-details {
+    padding-left: 20px;
+  }
+  
+  .time {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .activity {
+    margin-left: 20px;
+  }

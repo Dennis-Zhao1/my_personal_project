@@ -80,41 +80,43 @@ export default function HomePage(){
 
     
     return (
-        <>
-        <div className="where">
-            <h1 >Where to?</h1> <br />            
-        </div>
+        <div className="home-container">
+            <div className="background-image"></div>
+            
+            <div className="where">
+                <h1 >Where to?</h1> <br />            
+            </div>
 
-        <div className="warnning" id = "warnningContainer">
-            {showWarning && (
-                <p id="warningText">Please select a location</p>
+            <div className="warnning" id = "warnningContainer">
+                {showWarning && (
+                    <p id="warningText">Please select a location</p>
+                )}
+
+            </div>
+
+            <div className="town">
+                <p className="p">City/Town</p>
+            </div>
+
+            <div className="inputContainer">
+                <input className="input" type="text" value={inputValue} onChange={handleInputChange} placeholder="Places to go" />
+            </div>
+                
+            {cityOptions.length > 0 && (
+                <ul className="dropdown">
+                    {cityOptions.map( (a_city, index) => (
+                        <li key={index} onClick={() => handleOptionClick(a_city)}>
+                            {a_city.city}, {a_city.state}, {a_city.country} 
+                        </li> )
+                    )}
+                </ul>
             )}
 
-        </div>
+            <div className="buttonContainer">
 
-        <div className="town">
-            <p className="p">City/Town</p>
-        </div>
+                <button className="button" onClick={handleButtonClick}>Next</button>
+            </div>           
 
-        <div className="inputContainer">
-            <input className="input" type="text" value={inputValue} onChange={handleInputChange} placeholder="Places to go" />
-        </div>
-               
-        {cityOptions.length > 0 && (
-            <ul className="dropdown">
-                {cityOptions.map( (a_city, index) => (
-                    <li key={index} onClick={() => handleOptionClick(a_city)}>
-                        {a_city.city}, {a_city.state}, {a_city.country} 
-                    </li> )
-                )}
-            </ul>
-        )}
-
-        <div className="buttonContainer">
-
-             <button className="button" onClick={handleButtonClick}>Next</button>
-        </div>           
-
-        </>        
+        </div>        
     )
 }
