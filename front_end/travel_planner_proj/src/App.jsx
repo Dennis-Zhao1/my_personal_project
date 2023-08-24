@@ -13,6 +13,9 @@ function App() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [resultPlan,setResultPlan] = useState([])
+  const [plans,setPlans] = useState([])
+  const [a_plan_detail,setAPlanDetail] = useState([])
+ 
   const [user,setUser] = useState(null)
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,8 +63,10 @@ function App() {
           selectcountry,setCountry,
           startDate,setStartDate,
           endDate,setEndDate,
-          resultPlan,setResultPlan,
           user,setUser,
+          resultPlan,setResultPlan,
+          plans,setPlans,
+          a_plan_detail,setAPlanDetail
         }
       }
     >
